@@ -1,25 +1,31 @@
-﻿// "Перегрузка". Вариант 4
+﻿public readonly struct Fraction
+{
+    private readonly int num;
+    private readonly int den;
 
-// В следующих задачах перегрузить операции: «*» на случай произведения пар чисел 
-// (a1, b1) и (a2, b2): (a1, b1) * (a2, b2) = (a1 a2 – b2 b1, a1 b2 + a2 b1).
-
-class Programm {
-
-
-     static double Mult (double a1, double b1, double a2, double b2) {
-
-        return a1 * a2 - b2 * b1; 
+    public Fraction(int numerator, int denominator)
+    {
+        if (denominator == 0)
+        {
+            throw new ArgumentException("Denominator cannot be zero.", nameof(denominator));
         }
-        
-     static int Mult (int a1, int b1, int a2, int b2) {
-        
-        return  a1 * b2 + a2 * b1; 
-        }
+        num = numerator;
+        den = denominator;
+    }
 
-    static void Main (string[] args) {
+    public static Fraction operator *(Fraction a, Fraction b)
+        => new Fraction(a.num * b.num, a.den * b.den);
 
-        int Result = Mult(8, 7, 2, 3);
+public override string ToString() => $"NewPoint ({num} , {den})";
+}
 
-        Console.WriteLine(Result);
-    }  
+public static class OperatorOverloading
+{
+    public static void Main()
+    {
+        var a = new Fraction(5, 4);
+        var b = new Fraction(1, 2);
+
+         Console.WriteLine(a * b); 
+    }
 }
