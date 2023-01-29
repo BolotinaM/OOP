@@ -5,10 +5,6 @@
 
     public Result(int first, int second)
     {
-        if (second == 0)
-        {
-            throw new ArgumentException(nameof(second));
-        }
         f = first;
         s = second;
     }
