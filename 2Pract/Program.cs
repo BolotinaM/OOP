@@ -1,30 +1,30 @@
-﻿public readonly struct Fraction
+﻿public readonly struct Result
 {
-    private readonly int num;
-    private readonly int den;
+    private readonly int f;
+    private readonly int s;
 
-    public Fraction(int numerator, int denominator)
+    public Result(int first, int second)
     {
-        if (denominator == 0)
+        if (second == 0)
         {
-            throw new ArgumentException("Denominator cannot be zero.", nameof(denominator));
+            throw new ArgumentException(nameof(second));
         }
-        num = numerator;
-        den = denominator;
+        f = first;
+        s = second;
     }
 
-    public static Fraction operator *(Fraction a, Fraction b)
-        => new Fraction(a.num * b.num, a.den * b.den);
+    public static Result operator *(Result a, Result b)
+        => new Result(a.f * b.f, a.s * b.s);
 
-public override string ToString() => $"NewPoint ({num} , {den})";
+public override string ToString() => $"NewPoint ({f} , {s})";
 }
 
 public static class OperatorOverloading
 {
     public static void Main()
     {
-        var a = new Fraction(5, 4);
-        var b = new Fraction(1, 2);
+        var a = new Result(1, 2);
+        var b = new Result(4, 1);
 
          Console.WriteLine(a * b); 
     }
